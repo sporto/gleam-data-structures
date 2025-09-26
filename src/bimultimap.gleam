@@ -1,24 +1,25 @@
+//// A bidirectional multi map (BiMultiMap)
+//// A data structure that stores associations between keys and values
+//// in both directions
+//// A key can point to multiple values
+//// A value can point to multiple keys
+////
+//// For example, keys have association to values:
+//// ```
+//// animal → [cat, lion]
+//// pet → [cat]
+//// ```
+//// And values have reverse association to those keys
+//// ```
+//// cat → [animal, pet]
+//// lion → [animal]
+//// ```
+
 import gleam/dict.{type Dict}
 import gleam/option.{None, Some}
 import gleam/result
 import gleam/set.{type Set}
 
-/// A bidirectional multi map (BiMultiMap)
-/// A data structure that stores associations between keys and values
-/// in both directions
-/// A key can point to multiple values
-/// A value can point to multiple keys
-///
-/// For example, keys have association to values:
-/// ```
-/// animal → [cat, lion]
-/// pet → [cat]
-/// ```
-/// And values have reverse association to those keys
-/// ```
-/// cat → [animal, pet]
-/// lion → [animal]
-/// ```
 pub opaque type BiMultiMap(k, v) {
   BiMultiMap(direct: Dict(k, Set(v)), reverse: Dict(v, Set(k)))
 }

@@ -1,21 +1,21 @@
-import gleam/dict.{type Dict}
-import gleam/option.{None, Some}
-import gleam/result
+//// A bidirectional map (BiMap)
+//// A data structure similar to a Dictionary but stores
+//// the association in both directions
+////
+//// For example, keys have association to values:
+//// ```
+//// animal → cat
+//// color → red
+//// ```
+//// And values have reverse association to those keys
+//// ```
+//// cat → animal
+//// red → color
+//// ```
+////
 
-/// A bidirectional map (BiMap)
-/// A data structure similar to a Dictionary but stores
-/// the association in both directions
-///
-/// For example, keys have association to values:
-/// ```
-/// animal → cat
-/// color → red
-/// ```
-/// And values have reverse association to those keys
-/// ```
-/// cat → animal
-/// red → color
-/// ```
+import gleam/dict.{type Dict}
+
 pub opaque type BiMap(k, v) {
   BiMap(direct: Dict(k, v), reverse: Dict(v, k))
 }
