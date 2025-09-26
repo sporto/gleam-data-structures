@@ -6,13 +6,6 @@
 ```sh
 gleam add structures@1
 ```
-```gleam
-import structures
-
-pub fn main() -> Nil {
-  // TODO: An example of the project in use
-}
-```
 
 Further documentation can be found at <https://hexdocs.pm/structures>.
 
