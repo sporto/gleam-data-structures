@@ -36,3 +36,14 @@ pub fn delete_val_test() {
   assert mm.get(m, "a") == set.from_list([2])
   assert mm.get(m, "b") == set.new()
 }
+
+pub fn delete_key_val_test() {
+  let m =
+    mm.new()
+    |> mm.insert("a", 1)
+    |> mm.insert("a", 2)
+    |> mm.insert("b", 1)
+    |> mm.delete_key_val("a", 2)
+
+  assert mm.get(m, "a") == set.from_list([1])
+}
