@@ -3,6 +3,22 @@ import gleam/option.{None, Some}
 import gleam/result
 import gleam/set.{type Set}
 
+/// A bidirectional multi map (BiMultiMap)
+/// A data structure that stores associations between keys and values
+/// in both directions
+/// A key can point to multiple values
+/// A value can point to multiple keys
+///
+/// For example, keys have association to values:
+/// ```
+/// animal → [cat, lion]
+/// pet → [cat]
+/// ```
+/// And values have reverse association to those keys
+/// ```
+/// cat → [animal, pet]
+/// lion → [animal]
+/// ```
 pub opaque type BiMultiMap(k, v) {
   BiMultiMap(direct: Dict(k, Set(v)), reverse: Dict(v, Set(k)))
 }
@@ -11,6 +27,7 @@ pub fn new() {
   BiMultiMap(direct: dict.new(), reverse: dict.new())
 }
 
+/// Insert a key an associated value
 pub fn insert(into into: BiMultiMap(k, v), key key: k, value value: v) {
   let direct =
     dict.upsert(into.direct, key, fn(option) {
@@ -29,10 +46,12 @@ pub fn insert(into into: BiMultiMap(k, v), key key: k, value value: v) {
   BiMultiMap(direct:, reverse:)
 }
 
+/// Get the associated values for a key
 pub fn get(from from: BiMultiMap(k, v), key key: k) -> Set(v) {
   dict.get(from.direct, key) |> result.unwrap(set.new())
 }
 
+/// Get the associated keys for a value
 pub fn get_val(from from: BiMultiMap(k, v), value value: v) -> Set(k) {
   dict.get(from.reverse, value)
   |> result.unwrap(set.new())
