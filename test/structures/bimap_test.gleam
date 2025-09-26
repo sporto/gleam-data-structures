@@ -1,4 +1,4 @@
-import bimap as bm
+import structures/bimap as bm
 
 pub fn insert_same_key_test() {
   let m =

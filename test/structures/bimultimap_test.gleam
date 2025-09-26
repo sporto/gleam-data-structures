@@ -1,5 +1,5 @@
-import bimultimap as bmm
 import gleam/set
+import structures/bimultimap as bmm
 
 pub fn get_test() {
   let actual = bmm.new() |> bmm.insert("a", 1) |> bmm.get("a")
